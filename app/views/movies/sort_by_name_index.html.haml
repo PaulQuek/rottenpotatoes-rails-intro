@@ -4,7 +4,7 @@
 %table#sort_by_name_movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th{:class => "notHilite"}= link_to 'Movie Title', sort_name_index_path, id: "title_header"
+      %th{:class => "hilite text-primary"}= link_to 'Movie Title', sort_name_index_path, id: "title_header"
       %th{:class => "notHilite"} Rating
       %th{:class => "notHilite"}= link_to 'Release Date', sort_date_index_path, id: "release_date_header"
       %th{:class => "notHilite"} More Info
