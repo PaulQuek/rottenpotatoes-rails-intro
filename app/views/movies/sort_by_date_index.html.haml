@@ -1,0 +1,19 @@
+-#  This file is app/views/movies/sort_by_name_index.html.haml
+%h2 All Movies
+
+%table#sort_by_date_movies.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th{:class => "notHilite"}= link_to 'Movie Title', sort_name_index_path, id: "title_header"
+      %th{:class => "notHilite"} Rating
+      %th{:class => "hilite"}= link_to 'Release Date', sort_date_index_path, id: "release_date_header"
+      %th{:class => "notHilite"} More Info
+  %tbody
+    - @sort_by_date_movies.each do |movie|
+      %tr
+        %td= movie.title
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+= link_to 'Add new movie', new_movie_path
