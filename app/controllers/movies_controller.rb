@@ -13,6 +13,14 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
   end
+  
+  def sort_by_name_index
+    @sort_by_name_movies = Movie.order("title ASC").all
+  end
+
+  def sort_by_date_index
+    @sort_by_date_movies = Movie.order("release_date ASC").all
+  end
 
   def new
     # default: render 'new' template

@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.hilite {
+  background-color: gold;
+}
+.notHilite{
+  background-color: #F1B449;
+}
