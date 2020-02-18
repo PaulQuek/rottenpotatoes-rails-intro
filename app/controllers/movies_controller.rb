@@ -1,7 +1,17 @@
 class MoviesController < ApplicationController
-
+  helper_method :all_ratings, :saved_ratings
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
+  end
+
+  def saved_ratings
+    if params[:ratings].nil?
+      @saved_ratings = all_ratings
+    else
+      @saved_ratings = []
+      params[:ratings].each_key {|key| @saved_ratings.push(key)}
+    end
+    @saved_ratings
   end
 
   def show
@@ -11,7 +21,19 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    if params[:ratings].nil?
+      @selected_ratings = all_ratings.each
+    else
+      @selected_ratings = params[:ratings].each_key
+    end
+    
+    @movies = Movie.where("upper(rating) in (?)", @selected_ratings)
+  end
+  
+    # Selects all the possibility of ratings  
+  def all_ratings
+    @all_ratings = Movie.distinct.pluck(:rating)
+    @all_ratings = @all_ratings.map(&:upcase)
   end
   
   def sort_by_name_index
