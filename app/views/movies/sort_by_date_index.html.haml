@@ -1,11 +1,12 @@
--#  This file is app/views/movies/sort_by_name_index.html.haml
+-#  This file is app/views/movies/sort_by_date_index.html.haml
 %h2 All Movies
-= form_tag movies_path, :method => :get do
+
+= form_tag sort_date_index_path, id: "ratings_form", :method => :get do
   Include:
   - all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]"
-  = submit_tag 'Refresh', :class => 'btn btn-primary'
+    = check_box_tag "ratings[#{rating}]", 1, saved_ratings.include?("#{rating}"), id: "ratings_#{rating}"
+  = submit_tag 'Refresh', :class => 'btn btn-primary', id: "ratings_submit"
 %table#sort_by_date_movies.table.table-striped.col-md-12
   %thead
     %tr
